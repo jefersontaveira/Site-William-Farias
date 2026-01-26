@@ -1,0 +1,149 @@
+/* =========================================
+    REGRAS PARA TABLETS (768px - 1024px)
+   ========================================= */
+
+/* 1. Ajustes de Layout Base */
+.section-pad { 
+    padding: 80px 0; 
+}
+
+h2 { 
+    font-size: 2.2rem; 
+}
+
+/* 2. Header & Navegação */
+#header {
+    padding: 20px 0;
+}
+
+.hamburger {
+    display: block; /* Ativa o ícone de menu */
+    z-index: 1001;            /* Acima do header */
+    color: var(--color-text-white);
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+/* tablet.css */
+.nav-menu {
+    display: flex !important; 
+    visibility: hidden;      /* Garante que o GSAP consiga manipular */
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;             /* No tablet pode ser 100% ou menos */
+    height: 100vh;
+    background: #0a0a0a;
+    z-index: 99990;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+No tablet.css, o objetivo é realizar a transição da navegação horizontal para o modelo de "gaveta" (hamburger). Como você trabalha com projetos que exigem precisão técnica, como sistemas de contabilidade e automação, essa organização por camadas é essencial para evitar que o layout "quebre" em iPads ou tablets Android.
+
+Nesta fase, o menu de texto desaparece e o ícone hamburger assume o controle visual.
+
+Estrutura do Menu no tablet.css
+Este código deve ser ativado via media query (geralmente max-width: 1024px) no seu arquivo principal ou no arquivo separado.
+
+CSS
+/* =========================================
+    REGRAS PARA TABLET (Até 1024px)
+   ========================================= */
+
+/* 1. Ativação do Hamburger */
+.hamburger {
+    display: block !important; /* Mostra o ícone */
+    z-index: 1001;            /* Acima do header */
+}
+
+/* 2. Transformação do Menu em "Gaveta" */
+.nav-menu {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    /* Posição Fixa fora da tela */
+    position: fixed;
+    top: 0;
+    right: -100%;             /* Escondido à direita */
+    width: 100%;              /* Ocupa a tela toda ou parte dela */
+    height: 100vh;
+    
+    /* Estética de Luxo */
+    background-color: var(--color-bg-darker);
+    visibility: hidden;       /* GSAP usará autoAlpha para mostrar */
+    z-index: 999;
+}
+
+/* 3. Ajuste dos Links Internos */
+.nav-menu ul {
+    flex-direction: column;   /* Empilha os links verticalmente */
+    gap: 35px;                /* Aumenta o espaço para o toque (UX) */
+}
+
+.nav-menu a {
+    font-size: 1.4rem;        /* Fonte maior para leitura fácil em tablets */
+    letter-spacing: 2px;
+}
+
+/* 4. Ajuste do Botão de Contato no Menu */
+.btn-contact {
+    border-color: var(--color-text-gold);
+    padding: 15px 40px;
+}
+
+
+
+
+.hero-section {
+    display: flex;           
+    flex-direction: column;  
+    justify-content: center; 
+    align-items: center;     
+    text-align: center;     
+    height: 85vh;          
+    width: 100%;
+}
+
+.hero-content {
+    width: 90%;
+}
+
+/* 3. Seção Visão (Split Grid) */
+.grid-2-split {
+    gap: 40px;
+    grid-template-columns: 1fr; /* Empilha o texto e a imagem se necessário */
+}
+
+.portrait-frame img {
+    height: 500px; /* Reduz a altura da imagem lateral */
+    transform: translate(15px, 15px);
+}
+
+/* 4. Portfólio (De 3 colunas para 2 colunas) */
+.portfolio-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 20px !important;
+}
+
+.portfolio-item {
+    height: 450px !important; /* Ajuste na altura para manter a proporção */
+}
+
+/* 5. Diferenciais & Testemunhos (De 3 para 2 colunas) */
+.grid-3, 
+.testimonial-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+/* 6. Footer */
+.footer-flex {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    text-align: center;
+}

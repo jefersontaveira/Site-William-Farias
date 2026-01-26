@@ -1,0 +1,256 @@
+/* =========================================
+    1. VARIÁVEIS E BASE (Luxo & Identidade)
+   ========================================= */
+:root {
+    --color-bg-main: #121212;
+    --color-bg-darker: #0a0a0a;
+    --color-text-gold: #B99694;    /* Ouro Nobre */
+    --color-accent: #d4af37;       /* Ouro de Destaque */
+    --color-text-white: #ffffff;
+    --color-text-gray: #a0a0a0;
+    
+    --font-title: 'Cinzel', serif;
+    --font-body: 'Montserrat', sans-serif;
+    
+    --container-width: 1200px;
+    --transition-lux: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    background-color: var(--color-bg-main);
+    color: var(--color-text-gray);
+    font-family: var(--font-body);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+/* Tipografia */
+h1, h2, h3, h4 {
+    font-family: var(--font-title);
+    color: var(--color-text-white);
+    font-weight: 400; letter-spacing: 1px;
+}
+
+h1 { font-size: clamp(3rem, 5vw, 5rem); line-height: 1.1; }
+h2 { font-size: 2.5rem; margin-bottom: 1.5rem; text-transform: uppercase; }
+
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+ul { list-style: none; }
+img { width: 100%; display: block; object-fit: cover; }
+
+/* Utilitários de Layout */
+.container { width: 90%; max-width: var(--container-width); margin: 0 auto; }
+.section-pad { padding: 120px 0; }
+.bg-darker { background-color: var(--color-bg-darker); }
+.text-center { text-align: center; }
+
+.gold-subtitle {
+    display: block;
+    color: var(--color-text-gold);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+/* =========================================
+    2. HEADER & NAVEGAÇÃO (Desktop)
+   ========================================= */
+#header {
+    position: fixed; 
+    width: 100%; 
+    z-index: 1000;
+    padding: 25px 0;
+    background-color: var(--color-bg-darker);
+    border-bottom: 1px solid rgba(185, 150, 148, 0.15);
+    transition: var(--transition-lux);
+}
+
+#header.scrolled {
+    padding: 15px 0;
+    background: rgba(10, 10, 10, 0.98);
+}
+
+.header-flex { display: flex; justify-content: space-between; align-items: center; }
+
+.logo { 
+    font-family: var(--font-title); 
+    color: var(--color-text-white); 
+    font-size: 1.6rem; 
+    letter-spacing: 3px; 
+}
+
+.nav-menu{
+    display: block;
+    z-index: 9998;
+}
+
+.nav-menu ul { display: flex; gap: 40px; align-items: center; }
+
+.nav-menu a {
+    color: var(--color-text-white);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 400;
+}
+
+.nav-menu a:hover { color: var(--color-text-gold); }
+
+.btn-contact {
+    border: 1px solid var(--color-text-gold);
+    padding: 12px 30px;
+    color: var(--color-text-gold) !important;
+}
+
+.hamburger { 
+    display: none; 
+    cursor: pointer;
+    color: var(--color-text-white);
+    font-size: 1.5rem;
+}
+
+/* =========================================
+    3. SEÇÕES PRINCIPAIS (Layout Largo)
+   ========================================= */
+
+/* Hero Section */
+.hero-section { position: relative; height: 100vh; display: flex; align-items: center; overflow: hidden; }
+
+.hero-bg { 
+    position: absolute; 
+    inset: 0; 
+    background-size: cover; 
+    background-position: center; 
+    z-index: 0; 
+    height: 120%;
+    will-change: transform;
+}
+
+.overlay-dark { position: absolute; inset: 0; background: linear-gradient(to right, #000, transparent); opacity: 0.85; z-index: 1; }
+.hero-content { position: relative; z-index: 2; max-width: 800px; }
+
+/* Seção Visão (Split Grid) */
+.grid-2-split { display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; align-items: center; }
+
+.portrait-frame img {
+    height: 650px;
+    border-bottom: 5px solid var(--color-text-gold);
+    transform: translate(25px, 25px);
+    box-shadow: -25px -25px 0px rgba(185, 150, 148, 0.05);
+}
+
+/* --- PORTFÓLIO CORRIGIDO (SIMETRIA TOTAL) --- */
+.portfolio-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important; /* 3 Colunas Fixas */
+    gap: 30px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.portfolio-item {
+    display: block; /* Garante que o link ocupe todo o espaço do card */
+    text-decoration: none; /* Remove sublinhado padrão de links */
+    color: inherit; /* Mantém as cores que definimos antes */
+    cursor: pointer;
+
+    position: relative;    
+    height: 550px;        
+    overflow: hidden;       
+    background-color: #000;
+}
+
+.portfolio-item:hover {
+    color: inherit; /* Evita que o texto mude de cor no hover do link */
+}
+
+.portfolio-item img {
+    width: 100% !important;
+    height: 115% !important; /* Damos uma margem para a imagem crescer sem mostrar bordas */
+    object-fit: cover !important;
+    transform: translateY(-7%) scale(1); 
+    transition: transform 2.0s cubic-bezier(0.19, 1, 0.22, 1);
+    will-change: transform;
+    display: block;
+}
+
+.portfolio-item:hover img { 
+    transform: translateY(-7%) scale(1.05) rotate(0.01deg) !important; 
+}
+
+.item-info {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 40px 30px;
+    background: linear-gradient(to top, rgba(0,0,0,0.95) 30%, transparent);
+    z-index: 5;
+}
+
+/* Diferenciais (Cards) */
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+
+.feature-box {
+    padding: 50px 40px;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: var(--transition-lux);
+    text-align: center;
+}
+
+.feature-box:hover {
+    border-color: var(--color-text-gold);
+    background: rgba(185, 150, 148, 0.02);
+    transform: translateY(-5px);
+}
+
+.feature-box i { font-size: 2.5rem; color: var(--color-text-gold); margin-bottom: 25px; display: block; }
+
+/* Testemunhos */
+.testimonial-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+
+.testimonial-item {
+    background: rgba(255, 255, 255, 0.02);
+    padding: 40px;
+    border: 1px solid rgba(212, 175, 55, 0.05);
+    transition: var(--transition-lux);
+}
+
+.testimonial-item:hover { border-color: var(--color-accent); transform: translateY(-10px); }
+
+.client-photo {
+    width: 80px; height: 80px; border-radius: 50%;
+    border: 2px solid var(--color-accent);
+    margin-bottom: 20px;
+}
+
+/* =========================================
+    4. FOOTER & EXTRAS
+   ========================================= */
+.footer-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 80px 0 40px;
+}
+
+.socials{
+    font-size: 30px;
+}
+    .socials a{
+        margin: 0px 10px 0px 0px;
+    }
+
+.copyright{
+    padding-bottom: 30px;
+}
+
+::selection { background: var(--color-accent); color: #000; }
+
+/* Efeito de Smooth Scroll (Obrigatório para tecnologia de luxo) */
+html.lenis { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }

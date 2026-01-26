@@ -1,0 +1,179 @@
+/* =========================================
+    RESPONSIVIDADE UNIVERSAL: PROJETOS
+   ========================================= */
+
+/* --- TABLETS (Até 1024px) --- */
+@media (max-width: 1024px) {
+    .hero-project {
+        height: 60vh; /* Reduz altura para não ocupar a tela toda */
+        padding-bottom: 50px;
+    }
+
+    .hero-project h1 {
+        font-size: 3rem !important; /* Sobrescreve o inline do HTML */
+    }
+
+    .grid-2-split {
+        gap: 40px;
+    }
+
+    .specs-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 colunas no tablet */
+        gap: 20px;
+    }
+}
+
+/* --- MOBILE (Até 767px) --- */
+Para elevar o nível de sofisticação e funcionalidade da página The Glass Manor em dispositivos móveis, precisamos focar em três pilares: legibilidade, espaçamento e interação por toque.
+
+Aqui está a atualização completa para o seu arquivo css/responsividade-projetos.css. Note que usei a unidade dvh (Dynamic Viewport Height) para garantir que a Hero se ajuste perfeitamente, mesmo com a barra de endereços do navegador subindo e descendo.
+
+Código: css/responsividade-projetos.css
+CSS
+/* =========================================
+    RESPONSIVIDADE PREMIUM: PROJETOS
+   ========================================= */
+
+/* --- AJUSTES TABLET (Até 1024px) --- */
+@media (max-width: 1024px) {
+    .hero-project {
+        height: 60vh;
+        padding-bottom: 40px;
+    }
+
+    .hero-project h1 {
+        font-size: 3.2rem !important;
+    }
+
+    .grid-2-split {
+        grid-template-columns: 1fr; /* Empilha no Tablet */
+        gap: 60px;
+    }
+
+    .image-block.portrait-frame img {
+        height: 500px;
+        transform: none !important; /* Remove deslocamentos para evitar bugs */
+    }
+}
+
+/* --- AJUSTES MOBILE (Até 767px) --- */
+@media (max-width: 767px) {
+    /* 1. Base e Header */
+    .logo{
+        font-size: 1.2rem;
+    }
+
+    .section-pad {
+        padding: 60px 0;
+    }
+
+    #header {
+        padding: 15px 0;
+    }
+
+    .btn-back {
+        font-size: 0.7rem;
+        letter-spacing: 1px;
+    }
+
+    /* 2. Hero Section Mobile */
+    .hero-project {
+        height: 70dvh; /* Altura dinâmica para mobile */
+        text-align: center;
+        align-items: center;
+        padding-bottom: 0;
+    }
+
+    .hero-project::after {
+        background: linear-gradient(to top, var(--project-bg) 20%, transparent 80%);
+    }
+
+    .accent-line {
+        margin: 0 auto 15px; /* Centraliza a linha */
+    }
+
+    .hero-project h1 {
+        font-size: 2.4rem !important; /* Tamanho confortável para celular */
+        line-height: 1.1;
+        margin: 10px 0 15px;
+    }
+
+    .hero-project p {
+        font-size: 0.85rem;
+    }
+
+    .text-block{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* 3. Grid de Conteúdo */
+    .grid-2-split {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .text-block h2 {
+        font-size: 1.8rem !important;
+        line-height: 1.3;
+        text-align: center;
+    }
+
+    .project-description {
+        font-size: 1rem;
+        line-height: 1.7;
+        text-align: left; /* Melhor para leitura de parágrafos longos */
+    }
+
+    /* 4. Especificações (Cards) */
+    .specs-grid {
+        grid-template-columns: 3fr; /* Um item por linha para destaque */
+        gap: 25px;
+        padding-top: 30px;
+        border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .spec-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .spec-item i {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+
+    .spec-item span {
+        font-size: 1.2rem;
+    }
+
+    /* 5. Imagem e Moldura */
+    .image-block.portrait-frame img {
+        height: 400px;
+        width: 100%;
+        transform: none !important; /* Evita que a foto saia da tela lateralmente */
+        box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        border-bottom: 4px solid var(--project-color) !important;
+    }
+
+    /* 6. Footer e Botão de Contato */
+    footer .container {
+        padding: 0 10px;
+    }
+
+    footer h2 {
+        font-size: 1.5rem !important;
+        margin-bottom: 30px !important;
+    }
+
+    .btn-contact {
+        width: 100%; /* Botão em largura total para o polegar */
+        display: block;
+        padding: 18px 20px !important;
+        font-size: 0.85rem;
+        border-width: 1px;
+    }
+}

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skyline Penthouse | WILLIAM FARIAS</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsividade-projetos.css">
+
+
+    <style>
+        :root {
+            /* Cores específicas para o Skyline: Urbano e Noturno */
+            --project-color: #B99694; /* Seu Ouro Rosé original */
+            --project-bg: #0D0D0D;    /* Preto Profundo */
+        }
+
+        body { background-color: var(--project-bg); color: #ccc; }
+
+        .hero-project {
+            height: 80vh;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+            padding-bottom: 80px;
+            position: relative;
+        }
+
+        .hero-project::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, var(--project-bg) 10%, transparent 80%);
+        }
+
+        .project-content { position: relative; z-index: 2; }
+
+        .accent-line {
+            width: 60px;
+            height: 2px;
+            background-color: var(--project-color);
+            margin-bottom: 25px;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 40px;
+        }
+
+        .spec-item { text-align: left; }
+        .spec-item i { color: var(--project-color); font-size: 1.8rem; margin-bottom: 15px; display: block; }
+        .spec-item span { color: #fff; font-family: var(--font-title); font-size: 1.4rem; display: block; }
+        .spec-item p { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--color-text-gray); }
+
+        .btn-back { 
+            color: var(--project-color); 
+            text-transform: uppercase; 
+            font-size: 0.75rem; 
+            letter-spacing: 2px; 
+            font-weight: 600;
+        }
+        
+        .project-description { font-size: 1.1rem; line-height: 1.8; margin-bottom: 30px; }
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <div class="container header-flex">
+            <a href="index.html" class="logo">WILLIΔM FARIAS.</a>
+            <nav class="nav-menu">
+                <a href="index.html#colecao" class="btn-back"><i class="lni lni-arrow-left"></i> Voltar à Coleção</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-project" style="background-image: url('https://plus.unsplash.com/premium_photo-1661878010419-0f4c0114d87a?q=80&w=1920&auto=format&fit=crop');">
+            <div class="container project-content">
+                <div class="accent-line"></div>
+                <span class="gold-subtitle" style="color: var(--project-color);">Private Listing</span>
+                <h1 style="font-size: 4rem;">Skyline Penthouse</h1>
+                <p style="color: #fff; letter-spacing: 1px;"><i class="lni lni-map-marker"></i> Jardins, São Paulo — SP</p>
+            </div>
+        </section>
+
+        <section class="section-pad">
+            <div class="container grid-2-split">
+                <div class="text-block">
+                    <span class="gold-subtitle">A Propriedade</span>
+                    <h2 style="color: #fff;">Onde o Horizonte é o seu Limite.</h2>
+                    <p class="project-description">
+                        Localizada no quadrilátero mais cobiçado dos Jardins, a Skyline Penthouse redefine o conceito de morar nas alturas. Com um design minimalista que privilegia a vista 360º da metrópole, esta residência suspensa apresenta acabamentos em mármore Carrara e automação completa de última geração.
+                    </p>
+                    <p class="project-description">
+                        O living com pé-direito duplo integra-se perfeitamente ao terraço com piscina privativa de borda infinita, criando o cenário ideal para recepções exclusivas sob as luzes da cidade.
+                    </p>
+                    
+                    <div class="specs-grid">
+                        <div class="spec-item">
+                            <i class="lni lni-full-screen"></i>
+                            <span>1.200 m²</span>
+                            <p>Área Privativa</p>
+                        </div>
+                        <div class="spec-item">
+                            <i class="lni lni-bed"></i>
+                            <span>05 Suítes</span>
+                            <p>Dormitórios</p>
+                        </div>
+                        <div class="spec-item">
+                            <i class="lni lni-car"></i>
+                            <span>08 Vagas</span>
+                            <p>Garagem Box</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="image-block portrait-frame">
+                    <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=1200&auto=format&fit=crop" alt="Interior Skyline" style="border-bottom: 5px solid var(--project-color);">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="section-pad text-center bg-darker">
+        <div class="container">
+            <span class="gold-subtitle">Interesse no Ativo?</span>
+            <h2 style="margin-bottom: 40px;">Solicite uma visita</h2>
+            <a href="https://wa.me/5511999999999?text=Olá William, gostaria de agendar uma visita na Skyline Penthouse." 
+               class="btn-contact" 
+               style="border-color: var(--project-color); color: var(--project-color) !important; padding: 20px 50px;">
+                Falar com William Farias
+            </a>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+</html>

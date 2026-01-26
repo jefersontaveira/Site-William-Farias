@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oceanfront Villa | WILLIAM FARIAS</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsividade-projetos.css">
+
+
+    <style>
+        :root {
+            /* Cores para o Oceanfront: Horizonte e Água */
+            --project-color: #5F7D8E; /* Azul Aço Profundo */
+            --project-bg: #0F171B;    /* Preto Frio (Matiz Azulado) */
+        }
+
+        body { background-color: var(--project-bg); color: #b0b8bc; }
+
+        .hero-project {
+            height: 80vh;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+            padding-bottom: 80px;
+            position: relative;
+        }
+
+        .hero-project::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, var(--project-bg) 8%, transparent 85%);
+        }
+
+        .project-content { position: relative; z-index: 5; }
+
+        .accent-line {
+            width: 60px;
+            height: 2px;
+            background-color: var(--project-color);
+            margin-bottom: 25px;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding-top: 40px;
+        }
+
+        .spec-item i { color: var(--project-color); font-size: 1.8rem; margin-bottom: 15px; display: block; }
+        .spec-item span { color: #fff; font-family: var(--font-title); font-size: 1.4rem; display: block; }
+        .spec-item p { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        .btn-back { 
+            color: var(--project-color); 
+            text-transform: uppercase; 
+            font-size: 0.75rem; 
+            letter-spacing: 2px; 
+            font-weight: 600;
+        }
+        
+        .project-description { font-size: 1.1rem; line-height: 1.9; margin-bottom: 30px; font-weight: 300; }
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <div class="container header-flex">
+            <a href="index.html" class="logo">WILLIΔM FARIAS.</a>
+            <nav class="nav-menu">
+                <a href="index.html#colecao" class="btn-back"><i class="lni lni-arrow-left"></i> Voltar à Coleção</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-project" style="background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1920&auto=format&fit=crop');">
+            <div class="container project-content">
+                <div class="accent-line"></div>
+                <span class="gold-subtitle" style="color: var(--project-color);">Acesso Náutico Exclusivo</span>
+                <h1 style="font-size: 4rem;">Oceanfront Villa</h1>
+                <p style="color: #fff; letter-spacing: 1px;"><i class="lni lni-island"></i> Ponta Leste, Angra dos Reis — RJ</p>
+            </div>
+        </section>
+
+        <section class="section-pad">
+            <div class="container grid-2-split">
+                <div class="text-block">
+                    <span class="gold-subtitle">A Experiência</span>
+                    <h2 style="color: #fff;">Onde o Mar e a Casa se Tornam Um.</h2>
+                    <p class="project-description">
+                        A Oceanfront Villa não é apenas uma propriedade, é um manifesto de liberdade. Construída sobre uma península privativa, esta obra-prima arquitetônica foi desenhada para que cada ambiente tenha uma moldura natural do Oceano Atlântico.
+                    </p>
+                    <p class="project-description">
+                        Com deck privativo para embarcações de até 80 pés e uma piscina de borda infinita que se funde com as águas cristalinas de Angra, esta residência oferece o equilíbrio perfeito entre a sofisticação moderna e a serenidade da costa fluminense.
+                    </p>
+                    
+                    <div class="specs-grid">
+                        <div class="spec-item">
+                            <i class="lni lni-anchor"></i>
+                            <span>Privativo</span>
+                            <p>Deck Náutico</p>
+                        </div>
+                        <div class="spec-item">
+                            <i class="lni lni-bed"></i>
+                            <span>07 Suítes</span>
+                            <p>Dormitórios</p>
+                        </div>
+                        <div class="spec-item">
+                            <i class="lni lni-full-screen"></i>
+                            <span>3.800 m²</span>
+                            <p>Área Total</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="image-block portrait-frame">
+                    <img src="https://images.unsplash.com/photo-1515362778563-6a8d0e44bc0b?q=80&w=1200&auto=format&fit=crop" alt="Vista Mar Oceanfront" style="border-bottom: 5px solid var(--project-color);">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="section-pad text-center bg-darker">
+        <div class="container">
+            <span class="gold-subtitle">Deseja este Estilo de Vida?</span>
+            <h2 style="margin-bottom: 40px;">Consulte Detalhes da Operação Logística</h2>
+            <a href="https://wa.me/5511999999999?text=Olá William, gostaria de informações exclusivas sobre a Oceanfront Villa em Angra." 
+               class="btn-contact" 
+               style="border-color: var(--project-color); color: var(--project-color) !important; padding: 20px 50px;">
+                Falar com William Farias
+            </a>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Glass Manor | WILLIAM FARIAS</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsividade-projetos.css">
+
+    <style>
+        :root {
+            /* Cores para o Glass Manor: Natureza e Design */
+            --project-color: #848C7E; /* Verde Sálvia Sofisticado */
+            --project-bg: #1A1C18;    /* Preto com matiz terroso */
+        }
+
+        body { background-color: var(--project-bg); color: #d1d1d1; }
+
+        .hero-project {
+            height: 80vh;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+            padding-bottom: 80px;
+            position: relative;
+        }
+
+        .hero-project::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, var(--project-bg) 5%, transparent 90%);
+        }
+
+        .project-content { position: relative; z-index: 2; }
+
+        .accent-line {
+            width: 60px;
+            height: 2px;
+            background-color: var(--project-color);
+            margin-bottom: 25px;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 40px;
+        }
+
+        .spec-item i { color: var(--project-color); font-size: 1.8rem; margin-bottom: 15px; display: block; }
+        .spec-item span { color: #fff; font-family: var(--font-title); font-size: 1.4rem; display: block; }
+        .spec-item p { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        .btn-back { 
+            color: var(--project-color); 
+            text-transform: uppercase; 
+            font-size: 0.75rem; 
+            letter-spacing: 2px; 
+            font-weight: 600;
+        }
+        
+        .project-description { font-size: 1.1rem; line-height: 1.8; margin-bottom: 30px; font-weight: 300; }
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <div class="container header-flex">
+            <a href="index.html" class="logo">WILLIΔM FARIAS.</a>
+            <nav class="nav-menu">
+                <a href="index.html#colecao" class="btn-back"><i class="lni lni-arrow-left"></i> Voltar à Coleção</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-project" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1920&auto=format&fit=crop');">
+            <div class="container project-content">
+                <div class="accent-line"></div>
+                <span class="gold-subtitle" style="color: var(--project-color);">Arquitetura de Grife</span>
+                <h1 style="font-size: 4rem;">The Glass Manor</h1>
+                <p style="color: #fff; letter-spacing: 1px;"><i class="lni lni-trees"></i> Fazenda Boa Vista, Porto Feliz — SP</p>
+            </div>
+        </section>
+
+        <section class="section-pad">
+            <div class="container grid-2-split">
+                <div class="text-block">
+                    <span class="gold-subtitle">O Cenário</span>
+                    <h2 style="color: #fff;">A Transparência como Estilo de Vida.</h2>
+                    <p class="project-description">
+                        Projetada para desaparecer na paisagem, a Glass Manor é um manifesto de arquitetura contemporânea. Situada em um dos terrenos mais altos da Fazenda Boa Vista, a residência utiliza planos de vidro do chão ao teto e estruturas de aço corten para integrar a floresta nativa ao living principal.
+                    </p>
+                    <p class="project-description">
+                        Cada detalhe foi pensado para respeitar o ciclo da luz solar, garantindo conforto térmico e uma experiência sensorial única em todas as estações do ano. Uma verdadeira joia para quem busca refúgio sem abrir mão do design.
+                    </p>
+                    
+                    <div class="specs-grid">
+                        <div class="spec-item">
+                            <i class="lni lni-full-screen"></i>
+                            <span>2.500 m²</span>
+                            <p>Terreno</p>
+                        </div>
+                        <div class="spec-item">
+                            <i class="lni lni-bed"></i>
+                            <span>06 Suítes</span>
+                            <p>Dormitórios</p>
+                        </div>
+                        <div class="spec-item">
+                            <i class="lni lni-car"></i>
+                            <span>10 Vagas</span>
+                            <p>Garagem Coberta</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="image-block portrait-frame">
+                    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1200&auto=format&fit=crop" alt="Arquitetura Glass Manor" style="border-bottom: 5px solid var(--project-color);">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="section-pad text-center bg-darker">
+        <div class="container">
+            <span class="gold-subtitle">Interesse no Ativo?</span>
+            <h2 style="margin-bottom: 40px;">Consulte Disponibilidade Off-Market</h2>
+            <a href="https://wa.me/5511999999999?text=Olá William, gostaria de mais informações sobre a Glass Manor na Boa Vista." 
+               class="btn-contact" 
+               style="border-color: var(--project-color); color: var(--project-color) !important; padding: 20px 50px;">
+                Falar com William Farias
+            </a>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+</html>

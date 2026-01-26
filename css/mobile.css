@@ -1,0 +1,179 @@
+/* =========================================
+    REGRAS PARA MOBILE (Telas < 768px)
+   ========================================= */
+
+/* 1. Ajustes de Base e Tipografia */
+.section-pad { 
+    padding: 60px 0; 
+}
+
+.container {
+    width: 90%;
+}
+
+h1 { 
+    font-size: 2.4rem; 
+    line-height: 1.2;
+}
+
+h2 { 
+    font-size: 1.8rem; 
+    margin-bottom: 1rem;
+}
+
+/* 2. Header & Navegação */
+#header {
+    padding: 15px 0;
+}
+/* mobile.css */
+
+.nav-menu {
+    /* 1. Mudamos display para flex (o GSAP cuidará da visibilidade) */
+    display: flex !important; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    /* 2. Posicionamento e Tamanho */
+    position: fixed;
+    top: 0;
+    left: 0;         /* Garantimos que comece no canto esquerdo */
+    width: 100%;
+    height: 100dvh;  /* dvh é melhor para mobile que o vh comum */
+    
+    /* 3. Camadas e Fundo */
+    background-color: #0a0a0a !important; /* Cor sólida para não vazar o fundo */
+    z-index: 9998 !important;             /* Fica abaixo apenas do botão fechar */
+    
+    /* 4. Estado Inicial para o GSAP */
+    right: -100%;    /* Fora da tela à direita */
+    visibility: hidden; 
+    padding: 0;
+}
+
+.nav-menu ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px; 
+    list-style: none;
+    padding: 0 !important;   /* Remove os 40px padrão do navegador */
+    margin: 0 !important;
+}
+
+.nav-menu li{
+    width: 100%;        
+    display: flex;
+    justify-content: center;
+    
+}
+
+.nav-menu a {
+    font-size: 1.8rem !important; /* Texto grande e legível */
+    color: #fff !important;
+    font-family: var(--font-title);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.nav-menu .btn-contact {
+    margin: 0 !important; /* Remove qualquer margem que venha do style.css */
+    width: auto;          /* Garante que ele não tente ocupar 100% se não for desejado */
+    text-align: center;
+}
+
+.hamburger {
+    display: block !important;
+    font-size: 1.8rem;
+    position: relative;
+    z-index: 9999 !important; /* O ícone sempre acima de tudo */
+    cursor: pointer;
+}
+
+
+
+/* 3. Hero Section */
+.hero-section {
+    display: flex;           
+    flex-direction: column;  
+    justify-content: center; 
+    align-items: center;     
+    text-align: center;     
+    height: 85vh;          
+    width: 100%;
+}
+
+.hero-content {
+    width: 90%;
+}
+
+.overlay-dark {
+    background: linear-gradient(to top, #000 30%, transparent); /* Gradiente mais forte na base */
+}
+
+/* 4. Seção Visão (Split Grid) */
+.grid-2-split {
+    grid-template-columns: 1fr; /* Coluna única */
+    gap: 40px;
+    text-align: center;
+}
+
+.portrait-frame img {
+    height: 450px;
+    width: 100%;
+    transform: none; /* Removemos o translate para evitar cortes laterais */
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+}
+
+/* 5. Portfólio (A Coleção) */
+.portfolio-grid {
+    grid-template-columns: 1fr !important; /* Coluna única obrigatória */
+    gap: 20px !important;
+}
+
+.portfolio-item {
+    height: 450px !important; /* Altura confortável para o polegar no scroll */
+}
+
+.item-info {
+    padding: 30px 20px;
+}
+
+.item-info h3 {
+    font-size: 1.3rem;
+}
+
+/* 6. Diferenciais (Cards) */
+.grid-3 {
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.feature-box {
+    padding: 40px 20px;
+}
+
+/* 7. Testemunhos */
+.testimonial-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.testimonial-item {
+    padding: 30px 20px;
+}
+
+/* 8. Footer & CTA */
+.footer-flex {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 40px;
+}
+
+.btn-contact {
+    width: 100%; /* Botão em largura total para facilitar o clique */
+    display: block;
+    text-align: center;
+}
