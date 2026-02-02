@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Glass Manor | WILLIAM FARIAS</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsividade-projetos.css">
+
+    <style>
+        :root {
+            /* Cores para o Glass Manor: Natureza e Design */
+            --project-color: #848C7E; /* Verde Sálvia Sofisticado */
+            --project-bg: #1A1C18;    /* Preto com matiz terroso */
+        }
+
+        body { background-color: var(--project-bg); color: #d1d1d1; }
+
+        .hero-project {
+            height: 80vh;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+            padding-bottom: 80px;
+            position: relative;
+        }
+
+        .hero-project::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, var(--project-bg) 5%, transparent 90%);
+        }
+
+        .project-content { position: relative; z-index: 2; }
+
+        .accent-line {
+            width: 60px;
+            height: 2px;
+            background-color: var(--project-color);
+            margin-bottom: 25px;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 40px;
+        }
+
+        .spec-item i { color: var(--project-color); font-size: 1.8rem; margin-bottom: 15px; display: block; }
+        .spec-item span { color: #fff; font-family: var(--font-title); font-size: 1.4rem; display: block; }
+        .spec-item p { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        .btn-back { 
+            color: var(--project-color); 
+            text-transform: uppercase; 
+            font-size: 0.75rem; 
+            letter-spacing: 2px; 
+            font-weight: 600;
+        }
+        
+        .project-description { font-size: 1.1rem; line-height: 1.8; margin-bottom: 30px; font-weight: 300; }
+
+        .mini-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .mini-gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--project-color);
+            transition: transform 0.3s ease;
+        }
+
+        .mini-gallery img:hover {
+            transform: scale(1.03);
+        }
+
+        /* Primeira foto em destaque (maior) */
+        .mini-gallery img:first-child {
+            grid-column: span 2;
+            height: 400px;
+        }
+
+        .project-gallery-wrapper { margin-top: 30px; width: 100%; }
+
+        .slider-container {
+            position: relative;
+            overflow: hidden;
+            height: 500px; /* Altura fixa para manter a elegância */
+            border-bottom: 4px solid var(--project-color);
+        }
+
+        .slider-track {
+            display: flex;
+            transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+            height: 100%;
+        }
+
+        .slide {
+            min-width: 100%;
+            height: 100%;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Estilização das Bolinhas */
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .dot.active {
+            background: var(--project-color);
+            transform: scale(1.5);
+            box-shadow: 0 0 10px var(--project-color);
+        }
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <div class="container header-flex">
+            <a href="index.html" class="logo"><img src="assets/lotus.png" alt="Lótus Imóveis"></a>
+            <nav class="nav-menu">
+                <a href="colecoes.html#filtros" class="btn-back"><i class="lni lni-arrow-left"></i> Voltar </a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="project-hero" class="hero-project">
+            <div class="container project-content">
+                <div class="accent-line"></div>
+                <span class="gold-subtitle" style="color: var(--project-color);">Arquitetura de Grife</span>
+                <h1 id="project-title" style="font-size: 4rem;">Carregando...</h1>
+                <p id="project-location" style="color: #fff; letter-spacing: 1px;"><i class="lni lni-trees"></i> </p>
+            </div>
+        </section>
+
+        <section class="section-pad">
+            <div class="container grid-2-split">
+                <div class="text-block">
+                    <span class="gold-subtitle">O Cenário</span>
+                    <h2 id="project-subtitle" style="color: #fff;"></h2>
+                    <p id="desc-1" class="project-description"></p>
+                    <p id="desc-2" class="project-description"></p>
+                    
+                    <div class="specs-grid">
+                        <div class="spec-item">
+                            <i class="lni lni-full-screen"></i>
+                            <span id="spec-area"></span>
+                            <p>Área Total</p>
+                        </div>
+                        <div class="spec-item">
+                            <i class="lni lni-bed"></i>
+                            <span id="spec-suites"></span>
+                            <p>Dormitórios</p>
+                        </div>
+                        <div class="spec-item">
+                            <i class="lni lni-car"></i>
+                            <span id="spec-vagas"></span>
+                            <p>Garagem</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-gallery-wrapper">
+                    <div class="slider-container">
+                        <div id="gallery-slider" class="slider-track">
+                            </div>
+                    </div>
+
+                    <div id="slider-dots" class="slider-dots">
+                        </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="section-pad text-center bg-darker">
+        <div class="container">
+            <span class="gold-subtitle">Interesse no Ativo?</span>
+            <h2 style="margin-bottom: 40px;">Consulte Disponibilidade Off-Market</h2>
+            <a href="https://wa.me/5511999999999?text=Olá William, gostaria de mais informações sobre a Glass Manor na Boa Vista." 
+               class="btn-contact" 
+               style="border-color: var(--project-color); color: var(--project-color) !important; padding: 20px 50px;">
+                Falar com William Farias
+            </a>
+        </div>
+    </footer>
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        async function carregarProjetoPeloId() {
+            // 1. Pegamos o ID da URL (ex: ?id=25)
+            const parametros = new URLSearchParams(window.location.search);
+            const idDoImovel = parametros.get('id');
+
+            if (!idDoImovel) {
+                window.location.href = 'colecoes.html'; // Volta se não houver ID
+                return;
+            }
+
+            // 2. Buscamos APENAS os dados desse imóvel específico
+            const apiURL = `https://moccasin-weasel-174149.hostingersite.com/wp-json/wp/v2/imovel/${idDoImovel}`;
+
+            try {
+                const response = await fetch(apiURL);
+                const imovel = await response.json();
+                
+                // 3. Agora você distribui os dados 'imovel.acf.foto_principal', etc., nos IDs do seu HTML
+                renderizarPaginaDeDetalhes(imovel); 
+            } catch (error) {
+                console.error("Erro ao buscar detalhes:", error);
+            }
+        }
+        
+        async function carregarDetalhesProjeto() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const projetoId = urlParams.get('id');
+            const apiURL = `https://moccasin-weasel-174149.hostingersite.com/wp-json/wp/v2/imovel/${projetoId}`;
+
+            if (!projetoId) {
+                window.location.href = 'colecoes.html';
+                return;
+        }
+
+        try {
+            const response = await fetch(apiURL);
+            const imovel = await response.json();
+            const acf = imovel.acf;
+
+            // Preenche Textos
+            document.title = `${imovel.title.rendered} | WILLIAM FARIAS`;
+            document.getElementById('project-title').innerText = imovel.title.rendered;
+            document.getElementById('project-location').innerHTML = `<i class="lni lni-trees"></i> ${acf.localizacao}`;
+            document.getElementById('project-subtitle').innerText = acf.subtitulo_descricao;
+            document.getElementById('desc-1').innerText = acf.descricao_1;
+            document.getElementById('desc-2').innerText = acf.descricao_2;
+            
+            // Specs
+            document.getElementById('spec-area').innerText = `${acf.area}m²`;
+            document.getElementById('spec-suites').innerText = `${acf.suites} Suítes`;
+            document.getElementById('spec-vagas').innerText = `${acf.vagas} Vagas`;
+
+            // Hero Background (Usando o filtro PHP que criamos para garantir a URL)
+            document.getElementById('project-hero').style.backgroundImage = `url('${acf.foto_principal}')`;
+
+            // Galeria Dinâmica (Filtra apenas campos que têm imagem)
+            const sliderTrack = document.getElementById('gallery-slider');
+            const dotsContainer = document.getElementById('slider-dots');
+            
+            // Filtramos apenas fotos que existem e são URLs válidas
+            const fotosValidas = [acf.foto_principal, acf.foto_2, acf.foto_3, acf.foto_4, acf.foto_5, acf.foto_6]
+                .filter(foto => foto && typeof foto === 'string' && foto.includes('http'));
+            
+            sliderTrack.innerHTML = '';
+            dotsContainer.innerHTML = '';
+
+            fotosValidas.forEach((foto, index) => {
+                // Cria o Slide individual
+                sliderTrack.innerHTML += `<div class="slide"><img src="${foto}" alt="Detalhe do Imóvel"></div>`;
+                
+                // Cria a Bolinha (Dot)
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+                if (index === 0) dot.classList.add('active');
+                
+                // Adiciona o clique na bolinha para mover o slide
+                dot.onclick = () => {
+                    sliderTrack.style.transform = `translateX(-${index * 100}%)`;
+                    document.querySelectorAll('.dot').forEach(d => d.classList.remove('active'));
+                    dot.classList.add('active');
+                };
+                
+                dotsContainer.appendChild(dot);
+            });
+
+        } catch (error) {
+            console.error("Erro ao carregar projeto:", error);
+        } finally {
+            // ESSENCIAL: Recalcula as posições de scroll após o conteúdo carregar
+            ScrollTrigger.refresh(); 
+            // Se a função de encolher a logo tiver um nome no seu main.js, chame-a aqui
+            if (typeof animarHeaderNoScroll === 'function') animarHeaderNoScroll();
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', carregarDetalhesProjeto);
+</script>
+
+</body>
+</html>

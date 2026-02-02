@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coleção Exclusiva | WILLIAM FARIAS</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
+
+
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/tablet.css" media="(min-width: 768px) and (max-width: 991px)">
+    <link rel="stylesheet" href="css/mobile.css" media="(max-width: 767px)">
+
+        <link rel="stylesheet" href="css/colecoes.css"> 
+    <link rel="stylesheet" href="css/tablet-colecoes.css" media="(min-width: 768px) and (max-width: 991px)">
+    <link rel="stylesheet" href="css/mobile-colecoes.css" media="(max-width: 767px)">
+
+
+</head>
+<body>
+
+    <header id="header">
+        <div class="container header-flex">
+            <a href="index.html" class="logo"><img src="assets/lotus.png" alt=""Lótus imóveis></a>
+
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="index.html#hero">Home</a></li>
+                    <li><a href="index.html#visiao">A Visão</a></li>
+                    <li><a href="colecoes.html" class="active">Coleção</a></li>
+                    <li><a href="#" class="btn-contact">Contato</a></li>
+                </ul>
+            </nav>
+
+            <div class="hamburger" id="menu-toggle">
+                <i class="lni lni-menu"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <section id="hero" class="hero-section hero-small">
+            <div class="hero-bg" style="background-image: url('assets/hero.jpeg');"></div>
+            <div class="overlay-dark"></div>
+            
+            <div class="hero-content container">
+                <span class="gold-subtitle">Onde sonhos ganham endereço</span>
+                <h1>Encontre o lar dos seus sonhos</h1>
+                <p>Selecionamos propriedades únicas que traduzem conforto, exclusividade e o estilo de vida que você sempre imaginou.</p>
+            </div>
+
+            <div class="scroll-down">
+                <span>Explore</span>
+                <i class="lni lni-chevron-down"></i>
+            </div>
+        </section>
+
+        <section class="section-pad-small text-center" style="padding-top: 20px;">
+            <div class="container">
+                <span class="gold-subtitle">Private Real Estate</span>
+                <h1 style="font-family: 'Cinzel', serif; font-size: 3rem; color: #fff;">Coleção Curada</h1>
+            </div>
+        </section>
+
+        <section class="filter-bar" id="filtros">
+            <div class="container filter-container">
+                <div class="filter-group">
+                    <select id="filter-suites" onchange="filtrarImoveis()">
+                        <option value="">Suítes (Todas)</option>
+                        <option value="3">3+ Suítes</option>
+                        <option value="5">5+ Suítes</option>
+                        <option value="7">7+ Suítes</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <select id="filter-vagas" onchange="filtrarImoveis()">
+                        <option value="">Vagas (Todas)</option>
+                        <option value="4">4+ Vagas</option>
+                        <option value="6">6+ Vagas</option>
+                        <option value="10">10+ Vagas</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <div class="results-count" id="count-text">Buscando ativos no banco de dados...</div>
+
+        <section class="section-pad">
+            <div class="container">
+                <div id="colecao-grid" class="portfolio-grid">
+                    </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contato">
+        <div class="container footer-flex">
+            <div class="footer-brand">
+                <h2>WILLIΔM FARIAS.</h2>
+                <p>Redefinindo o mercado de luxo.</p>
+            </div>
+            <div class="footer-contact">
+                <h4>Atendimento Private</h4>
+                <p>+55 11 99999-9999</p>
+                <p>concierge@williamfarias.com</p>
+                <div class="socials">
+                    <a href="#"><i class="lni lni-instagram-original"></i></a>
+                    <a href="#"><i class="lni lni-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright text-center">
+            <p>© 2026 William Farias | Desenvolvido por Jeferson Borges.</p>
+        </div>
+    </footer>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
+
+    <script src="js/colecoes.js"></script>
+    <script src="js/main.js"></script>
+    
+    
+</body>
+</html>

@@ -117,6 +117,34 @@ navLinks.forEach(link => {
     });
 });
 
+// Animação da logo
+
+function animarHeaderNoScroll() {
+    // Selecionamos os elementos
+    const logoImg = document.querySelector('.logo img');
+    const header = document.querySelector('#header');
+
+    if (!logoImg || !header) return;
+
+    // Criamos a animação baseada no scroll
+    ScrollTrigger.create({
+        start: 'top -50', // Ativa quando o topo da página sobe 50px
+        onEnter: () => {
+            // Estado ao rolar para baixo
+            gsap.to(logoImg, { width: '60px', duration: 0.4, ease: "power2.out" });
+            gsap.to(header, { padding: '10px 0', duration: 0.4 });
+        },
+        onLeaveBack: () => {
+            // Estado ao voltar para o topo
+            gsap.to(logoImg, { width: '120px', duration: 0.4, ease: "power2.out" });
+            gsap.to(header, { padding: '20px 0', duration: 0.4 });
+        }
+    });
+}
+
+// Inicializa a função
+animarHeaderNoScroll();
+
 // O SEGREDO PARA O PC: Resetar tudo se a tela aumentar
 window.addEventListener('resize', () => {
     if (window.innerWidth > 1024) {
