@@ -46,6 +46,9 @@ h2 {
     display: block !important; /* Mostra o ícone */
     z-index: 1001;            /* Acima do header */
 }
+.logo img{ 
+    width: 80px;
+}
 
 /* 2. Transformação do Menu em "Gaveta" */
 .nav-menu {

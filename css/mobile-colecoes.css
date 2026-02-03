@@ -1,3 +1,7 @@
+.hero-small .hero-content h1 {
+    font-size: 30px; 
+}
+
 .section-pad-small {
         padding: 40px 0 20px 0 !important;
     }

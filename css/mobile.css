@@ -27,6 +27,10 @@ h2 {
 }
 /* mobile.css */
 
+.logo img{ 
+    width: 80px;
+}
+
 .nav-menu {
     /* 1. Mudamos display para flex (o GSAP cuidará da visibilidade) */
     display: flex !important; 
