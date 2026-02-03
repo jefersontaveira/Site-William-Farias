@@ -40,17 +40,6 @@ h2 {
     align-items: center;
 }
 
-No tablet.css, o objetivo é realizar a transição da navegação horizontal para o modelo de "gaveta" (hamburger). Como você trabalha com projetos que exigem precisão técnica, como sistemas de contabilidade e automação, essa organização por camadas é essencial para evitar que o layout "quebre" em iPads ou tablets Android.
-
-Nesta fase, o menu de texto desaparece e o ícone hamburger assume o controle visual.
-
-Estrutura do Menu no tablet.css
-Este código deve ser ativado via media query (geralmente max-width: 1024px) no seu arquivo principal ou no arquivo separado.
-
-CSS
-/* =========================================
-    REGRAS PARA TABLET (Até 1024px)
-   ========================================= */
 
 /* 1. Ativação do Hamburger */
 .hamburger {

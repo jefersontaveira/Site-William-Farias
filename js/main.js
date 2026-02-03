@@ -120,32 +120,40 @@ navLinks.forEach(link => {
 // Animação da logo
 
 function animarHeaderNoScroll() {
-    // Selecionamos os elementos
     const logoImg = document.querySelector('.logo img');
     const header = document.querySelector('#header');
 
     if (!logoImg || !header) return;
 
-    // Criamos a animação baseada no scroll
-    ScrollTrigger.create({
-        start: 'top -50', // Ativa quando o topo da página sobe 50px
-        onEnter: () => {
-            // Estado ao rolar para baixo
-            gsap.to(logoImg, { width: '60px', duration: 0.4, ease: "power2.out" });
-            gsap.to(header, { padding: '10px 0', duration: 0.4 });
-        },
-        onLeaveBack: () => {
-            // Estado ao voltar para o topo
-            gsap.to(logoImg, { width: '120px', duration: 0.4, ease: "power2.out" });
-            gsap.to(header, { padding: '20px 0', duration: 0.4 });
-        }
+    // Criamos o detector de mídia do GSAP
+    let mm = gsap.matchMedia();
+
+    mm.add({
+        isDesktop: "(min-width: 992px)",
+        isMobile: "(max-width: 991px)"
+    }, (context) => {
+        let { isDesktop } = context.conditions;
+
+        const tamanhoNormal = isDesktop ? '120px' : '80px'; // Tamanho topo
+        const tamanhoScroll = isDesktop ? '60px' : '50px';  // Tamanho ao rolar
+        const paddingNormal = isDesktop ? '20px 0' : '15px 0';
+
+        ScrollTrigger.create({
+            start: 'top -50',
+            onEnter: () => {
+                gsap.to(logoImg, { width: tamanhoScroll, duration: 0.4, ease: "power2.out" });
+                gsap.to(header, { padding: '10px 0', duration: 0.4 });
+            },
+            onLeaveBack: () => {
+                gsap.to(logoImg, { width: tamanhoNormal, duration: 0.4, ease: "power2.out" });
+                gsap.to(header, { padding: paddingNormal, duration: 0.4 });
+            }
+        });
     });
 }
 
-// Inicializa a função
 animarHeaderNoScroll();
 
-// O SEGREDO PARA O PC: Resetar tudo se a tela aumentar
 window.addEventListener('resize', () => {
     if (window.innerWidth > 1024) {
         // Limpa as propriedades que o GSAP injetou

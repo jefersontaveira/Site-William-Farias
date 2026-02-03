@@ -1,3 +1,42 @@
-.hero-small .hero-content h1 {
-    font-size: 30px; 
-}
+.section-pad-small {
+        padding: 40px 0 20px 0 !important;
+    }
+
+    .section-pad-small h1 {
+        font-size: 2rem !important; /* Título mais equilibrado */
+    }
+
+    /* Barra de Filtros no Mobile */
+    .filter-bar {
+        top: 60px; /* Ajuste se o seu header mobile for menor */
+        padding: 15px 0;
+    }
+
+    .filter-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 2 filtros por linha no mobile */
+        gap: 10px;
+        padding: 0 15px;
+    }
+
+    .filter-group select {
+        width: 100%;
+        padding: 10px 30px 10px 10px; /* Menor padding para caber texto */
+        font-size: 0.65rem; /* Fonte levemente menor para não quebrar */
+        background-position: right 8px center; /* Seta mais próxima da borda */
+    }
+
+    /* Grid de Imóveis Mobile */
+    .portfolio-grid {
+        grid-template-columns: 1fr !important; /* 1 imóvel por vez (foco total) */
+        gap: 25px !important;
+    }
+
+    .portfolio-item {
+        height: 400px; /* Altura um pouco menor no mobile para visibilidade */
+    }
+
+    .results-count {
+        margin-top: 15px;
+        font-size: 0.6rem;
+    }
