@@ -41,7 +41,8 @@ gsap.to(".hero-bg", {
         trigger: ".hero-section",
         start: "top top",
         end: "bottom top",
-        scrub: true // Segue a velocidade do scroll perfeitamente
+        scrub: true, // Segue a velocidade do scroll perfeitamente
+        immediateRender: false
     }
 });
 
@@ -67,6 +68,7 @@ window.addEventListener("load", () => {
 });
 
 // 5. LÓGICA DO MENU HAMBURGER (LUXO)
+
 document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.getElementById('menu-toggle');
     const navMenu = document.querySelector('.nav-menu');
@@ -74,13 +76,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const icon = menuToggle.querySelector('i');
 
     function toggleMenu() {
-        // Alterna a classe 'active' no menu
+        // Liga/Desliga a classe 'active' que move o menu
         navMenu.classList.toggle('active');
         
-        // Alterna o ícone entre menu e fechar
+        // Troca o ícone (Menu para X)
         if (navMenu.classList.contains('active')) {
             icon.classList.replace('lni-menu', 'lni-close');
-            document.body.style.overflow = 'hidden'; // Trava o scroll do fundo
+            document.body.style.overflow = 'hidden'; // Trava o scroll da página
         } else {
             icon.classList.replace('lni-close', 'lni-menu');
             document.body.style.overflow = ''; // Libera o scroll
@@ -89,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     menuToggle.addEventListener('click', toggleMenu);
 
-    // Fecha o menu ao clicar em qualquer link (UX)
+    // Fecha o menu ao clicar em um link
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
             if (navMenu.classList.contains('active')) toggleMenu();
@@ -97,14 +99,50 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// Animação da logo
+
+function animarHeaderNoScroll() {
+    const logoImg = document.querySelector('.logo img');
+    const header = document.querySelector('#header');
+
+    if (!logoImg || !header) return;
+
+    // Criamos o detector de mídia do GSAP
+    let mm = gsap.matchMedia();
+
+    mm.add({
+        isDesktop: "(min-width: 992px)",
+        isMobile: "(max-width: 991px)"
+    }, (context) => {
+        let { isDesktop } = context.conditions;
+
+        const tamanhoNormal = isDesktop ? '100px' : '80px'; // Tamanho topo
+        const tamanhoScroll = isDesktop ? '60px' : '50px';  // Tamanho ao rolar
+        const paddingNormal = isDesktop ? '20px 0' : '15px 0';
+
+        ScrollTrigger.create({
+            start: 'top -50',
+            onEnter: () => {
+                gsap.to(logoImg, { width: tamanhoScroll, duration: 0.4, ease: "power2.out" });
+                gsap.to(header, { padding: '10px 0', duration: 0.4 });
+            },
+            onLeaveBack: () => {
+                gsap.to(logoImg, { width: tamanhoNormal, duration: 0.4, ease: "power2.out" });
+                gsap.to(header, { padding: paddingNormal, duration: 0.4 });
+            }
+        });
+    });
+}
+
 animarHeaderNoScroll();
 
+// O SEGREDO PARA O PC: Resetar tudo se a tela aumentar
 window.addEventListener('resize', () => {
     if (window.innerWidth > 1024) {
-        // Limpa as propriedades que o GSAP injetou
-        gsap.set(navMenu, { clearProps: "all" });
-        gsap.set(navLinks, { clearProps: "all" });
-        menuToggle.innerHTML = '<i class="lni lni-menu"></i>';
-        menuOpen = false;
+        navMenu.classList.remove('active'); // Remove a classe CSS
+        document.body.style.overflow = '';  // Libera o scroll
+        
+        const icon = menuToggle.querySelector('i');
+        if(icon) icon.classList.replace('lni-close', 'lni-menu');
     }
 });

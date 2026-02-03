@@ -92,7 +92,7 @@ img { width: 100%; display: block; object-fit: cover; }
 
 
 .logo img{ 
-    width: 120px;
+    width: 100px;
     transition: width 0.3s ease;
 }
 
