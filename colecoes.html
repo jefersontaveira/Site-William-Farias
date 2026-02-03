@@ -71,21 +71,52 @@
         <section class="filter-bar" id="filtros">
             <div class="container filter-container">
                 <div class="filter-group">
+                    <select id="filter-bairro" onchange="filtrarImoveis()">
+                        <option value="">Bairro (Todos)</option>
+                        <option value="Jardins">Euzébio</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
                     <select id="filter-suites" onchange="filtrarImoveis()">
                         <option value="">Suítes (Todas)</option>
                         <option value="3">3+ Suítes</option>
                         <option value="5">5+ Suítes</option>
-                        <option value="7">7+ Suítes</option>
                     </select>
                 </div>
+
+                <div class="filter-group">
+                    <select id="filter-quartos" onchange="filtrarImoveis()">
+                        <option value="">Dormitórios (Todos)</option>
+                        <option value="3">3+ Quartos</option>
+                        <option value="5">5+ Quartos</option>
+                    </select>
+                </div>
+
                 <div class="filter-group">
                     <select id="filter-vagas" onchange="filtrarImoveis()">
                         <option value="">Vagas (Todas)</option>
                         <option value="4">4+ Vagas</option>
-                        <option value="6">6+ Vagas</option>
-                        <option value="10">10+ Vagas</option>
+                        <option value="8">8+ Vagas</option>
                     </select>
                 </div>
+
+                <div class="filter-group">
+                    <select id="filter-piscina" onchange="filtrarImoveis()">
+                        <option value="">Piscina (Tanto faz)</option>
+                        <option value="sim">Com Piscina</option>
+                        <option value="nao">Sem Piscina</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                <select id="filter-area" onchange="filtrarImoveis()">
+                    <option value="">Área (Todas)</option>
+                    <option value="200">200m²+</option>
+                    <option value="500">500m²+</option>
+                    <option value="1000">1.000m²+</option>
+                    <option value="2000">2.000m²+</option>
+                </select>
             </div>
         </section>
 

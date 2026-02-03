@@ -51,17 +51,33 @@ function renderizarCards(imoveis) {
 
 // 3. Lógica de Filtro
 function filtrarImoveis() {
+    // Captura dos elementos de filtro
     const suiteMin = document.getElementById('filter-suites').value;
     const vagaMin = document.getElementById('filter-vagas').value;
+    const quartoMin = document.getElementById('filter-quartos').value;
+    const areaMin = document.getElementById('filter-area').value;
+    const piscina = document.getElementById('filter-piscina').value;
+    const bairro = document.getElementById('filter-bairro').value;
 
     const filtrados = bancoDeDados.filter(imovel => {
+        // Dados do ACF (convertendo para número onde necessário)
         const suites = parseInt(imovel.acf.suites) || 0;
         const vagas = parseInt(imovel.acf.vagas) || 0;
-        
+        const quartos = parseInt(imovel.acf.dormitorios) || 0;
+        const area = parseFloat(imovel.acf.area) || 0;
+        const temPiscina = imovel.acf.piscina; // Assume 'sim' ou 'nao'
+        const bairroImovel = imovel.acf.bairro;
+
+        // Lógica de Comparação
         const matchSuites = suiteMin === "" || suites >= parseInt(suiteMin);
         const matchVagas = vagaMin === "" || vagas >= parseInt(vagaMin);
+        const matchQuartos = quartoMin === "" || quartos >= parseInt(quartoMin);
+        const matchArea = areaMin === "" || area >= parseFloat(areaMin);
+        const matchPiscina = piscina === "" || temPiscina === piscina;
+        const matchBairro = bairro === "" || bairroImovel === bairro;
 
-        return matchSuites && matchVagas;
+        // O imóvel só aparece se passar em TODOS os critérios ativos
+        return matchSuites && matchVagas && matchQuartos && matchArea && matchPiscina && matchBairro;
     });
 
     renderizarCards(filtrados);

@@ -75,6 +75,7 @@ body { background-color: var(--bg-dark); color: #d1d1d1; }
     border-color: var(--accent-color);
 }
 
+
 .filter-group select:focus { border-color: var(--accent-color); }
 
 .results-count {
