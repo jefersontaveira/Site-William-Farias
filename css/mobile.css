@@ -2,6 +2,11 @@
     REGRAS PARA MOBILE (Telas < 768px)
    ========================================= */
 
+html, body {
+    max-width: 100%;
+    overflow-x: hidden; /* Impede o scroll lateral indesejado */
+}
+
 /* 1. Ajustes de Base e Tipografia */
 .section-pad { 
     padding: 60px 0; 
@@ -31,69 +36,62 @@ h2 {
     width: 80px;
 }
 
-.nav-menu {
-    /* 1. Mudamos display para flex (o GSAP cuidará da visibilidade) */
-    display: flex !important; 
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    /* 2. Posicionamento e Tamanho */
-    position: fixed;
-    top: 0;
-    left: 0;         /* Garantimos que comece no canto esquerdo */
-    width: 100%;
-    height: 100dvh;  /* dvh é melhor para mobile que o vh comum */
-    
-    /* 3. Camadas e Fundo */
-    background-color: #0a0a0a !important; /* Cor sólida para não vazar o fundo */
-    z-index: 9998 !important;             /* Fica abaixo apenas do botão fechar */
-    
-    /* 4. Estado Inicial para o GSAP */
-    right: -100%;    /* Fora da tela à direita */
-    visibility: hidden; 
-    padding: 0;
-}
-
-.nav-menu ul {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 40px; 
-    list-style: none;
-    padding: 0 !important;   /* Remove os 40px padrão do navegador */
-    margin: 0 !important;
-}
-
-.nav-menu li{
-    width: 100%;        
-    display: flex;
-    justify-content: center;
-    
-}
-
-.nav-menu a {
-    font-size: 1.8rem !important; /* Texto grande e legível */
-    color: #fff !important;
-    font-family: var(--font-title);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-.nav-menu .btn-contact {
-    margin: 0 !important; /* Remove qualquer margem que venha do style.css */
-    width: auto;          /* Garante que ele não tente ocupar 100% se não for desejado */
-    text-align: center;
-}
 
 .hamburger {
-    display: block !important;
-    font-size: 1.8rem;
-    position: relative;
-    z-index: 9999 !important; /* O ícone sempre acima de tudo */
-    cursor: pointer;
-}
+        display: block !important;
+        z-index: 10002 !important; /* Acima do menu */
+        color: #fff;
+        font-size: 1.6rem;
+    }
+
+    /* 2. Transformação da Gaveta (Menu) */
+    .nav-menu {
+        display: flex !important; 
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100dvh;
+        background-color: #0a0a0a;
+        z-index: 9999;
+
+        /* Estado Inicial: Escondido */
+        transform: translateX(100%);
+        visibility: hidden;
+        transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1), visibility 0.5s;
+    }
+
+    /* Ativado pelo JavaScript */
+    .nav-menu.active {
+        transform: translateX(0);
+        visibility: visible;
+    }
+
+    /* 3. Links do Menu */
+    .nav-menu ul {
+        flex-direction: column;
+        gap: 25px;
+        padding: 0 !important;
+        margin: 0 !important;
+        list-style: none;
+    }
+
+    .nav-menu a {
+        font-size: 1.3rem !important; /* Corrigido o erro .n.nav-menu */
+        color: #fff !important;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-family: 'Cinzel', serif;
+    }
+
+    .nav-menu .btn-contact {
+        padding: 12px 30px !important;
+        font-size: 1rem !important;
+    }
 
 
 

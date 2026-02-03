@@ -67,90 +67,35 @@ window.addEventListener("load", () => {
 });
 
 // 5. LÓGICA DO MENU HAMBURGER (LUXO)
-const menuToggle = document.getElementById('menu-toggle');
-const navMenu = document.querySelector('.nav-menu');
-const navLinks = document.querySelectorAll('.nav-menu a');
+document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.getElementById('menu-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    const navLinks = document.querySelectorAll('.nav-menu a');
+    const icon = menuToggle.querySelector('i');
 
-// Criamos a timeline, mas usaremos autoAlpha para lidar com a visibilidade
-const menuTL = gsap.timeline({ paused: true });
-
-menuTL.to(navMenu, {
-    right: 0,
-    autoAlpha: 1, 
-    duration: 0.6,
-    ease: "power4.inOut"
-})
-.from(navLinks, {
-    x: 30,
-    opacity: 1,
-    stagger: 0.1,
-    duration: 0.4,
-    ease: "power2.out"
-}, "-=0.3");
-
-let menuOpen = false;
-
-// Função para abrir/fechar apenas se for mobile/tablet
-function toggleMenu() {
-    if (window.innerWidth <= 1024) { // Só roda em Tablet e Mobile
-        if (!menuOpen) {
-            menuTL.play();
-            menuToggle.innerHTML = '<i class="lni lni-close"></i>';
+    function toggleMenu() {
+        // Alterna a classe 'active' no menu
+        navMenu.classList.toggle('active');
+        
+        // Alterna o ícone entre menu e fechar
+        if (navMenu.classList.contains('active')) {
+            icon.classList.replace('lni-menu', 'lni-close');
+            document.body.style.overflow = 'hidden'; // Trava o scroll do fundo
         } else {
-            menuTL.reverse();
-            menuToggle.innerHTML = '<i class="lni lni-menu"></i>';
+            icon.classList.replace('lni-close', 'lni-menu');
+            document.body.style.overflow = ''; // Libera o scroll
         }
-        menuOpen = !menuOpen;
     }
-}
 
-menuToggle.addEventListener('click', toggleMenu);
+    menuToggle.addEventListener('click', toggleMenu);
 
-// Fechar ao clicar nos links (Apenas no Mobile)
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        if (window.innerWidth <= 1024) {
-            menuTL.reverse();
-            menuToggle.innerHTML = '<i class="lni lni-menu"></i>';
-            menuOpen = false;
-        }
-    });
-});
-
-// Animação da logo
-
-function animarHeaderNoScroll() {
-    const logoImg = document.querySelector('.logo img');
-    const header = document.querySelector('#header');
-
-    if (!logoImg || !header) return;
-
-    // Criamos o detector de mídia do GSAP
-    let mm = gsap.matchMedia();
-
-    mm.add({
-        isDesktop: "(min-width: 992px)",
-        isMobile: "(max-width: 991px)"
-    }, (context) => {
-        let { isDesktop } = context.conditions;
-
-        const tamanhoNormal = isDesktop ? '120px' : '80px'; // Tamanho topo
-        const tamanhoScroll = isDesktop ? '60px' : '50px';  // Tamanho ao rolar
-        const paddingNormal = isDesktop ? '20px 0' : '15px 0';
-
-        ScrollTrigger.create({
-            start: 'top -50',
-            onEnter: () => {
-                gsap.to(logoImg, { width: tamanhoScroll, duration: 0.4, ease: "power2.out" });
-                gsap.to(header, { padding: '10px 0', duration: 0.4 });
-            },
-            onLeaveBack: () => {
-                gsap.to(logoImg, { width: tamanhoNormal, duration: 0.4, ease: "power2.out" });
-                gsap.to(header, { padding: paddingNormal, duration: 0.4 });
-            }
+    // Fecha o menu ao clicar em qualquer link (UX)
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (navMenu.classList.contains('active')) toggleMenu();
         });
     });
-}
+});
 
 animarHeaderNoScroll();
 
