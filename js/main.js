@@ -146,3 +146,52 @@ window.addEventListener('resize', () => {
         if(icon) icon.classList.replace('lni-close', 'lni-menu');
     }
 });
+
+
+// Função para renderizar os 3 últimos ativos na Home
+function renderizarHomeColecao(imoveis) {
+    const grid = document.getElementById('home-colecao-grid');
+    if (!grid || !imoveis) return; 
+
+    const ultimosTres = imoveis.slice(0, 3);
+
+    grid.innerHTML = ultimosTres.map(imovel => `
+        <a href="template.html?id=${imovel.id}" class="portfolio-item" style="background-image: url('${imovel.acf.foto_principal}');">
+            
+            <div class="item-info">
+                <h3>${imovel.title.rendered}</h3>
+                <div class="item-details-home">
+                    <span>${imovel.acf.area}m²</span>
+                    <span class="separator">|</span>
+                    <span>${imovel.acf.suites} Suítes</span>
+                </div>
+            </div>
+        </a>
+    `).join('');
+}
+
+// 6. INICIALIZADOR DINÂMICO (O Maestro)
+const API_URL = 'https://moccasin-weasel-174149.hostingersite.com/wp-json/wp/v2/imovel?_embed';
+
+async function carregarDadosEIniciar() {
+    try {
+        // 1. Busca os dados no WordPress
+        const resposta = await fetch(API_URL);
+        const imoveis = await resposta.json();
+
+        // 2. Envia os dados para a função de renderização da Home
+        renderizarHomeColecao(imoveis);
+
+        // 3. Reativa o Parallax para as novas imagens injetadas
+        ScrollTrigger.refresh();
+        
+    } catch (erro) {
+        console.error('Erro ao carregar ativos:', erro);
+        const grid = document.getElementById('home-colecao-grid');
+        if (grid) grid.innerHTML = '<p style="color: white; text-align: center; width: 100%;">Erro ao carregar a coleção.</p>';
+    }
+}
+
+// Inicia o processo assim que o site carregar
+document.addEventListener('DOMContentLoaded', carregarDadosEIniciar);
+
