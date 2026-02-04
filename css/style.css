@@ -275,3 +275,33 @@ img { width: 100%; display: block; object-fit: cover; }
 /* Efeito de Smooth Scroll (Obrigatório para tecnologia de luxo) */
 html.lenis { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
+
+
+/*EFEITO TRANSIÇÃO*/
+
+/* O container da cortina */
+.page-transition {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #0a0a0a; /* Cor oficial de fundo */
+    z-index: 10005; /* Acima de tudo */
+    
+    /* ESTADO INICIAL: Escondido abaixo da tela */
+    transform: translateY(100%);
+    pointer-events: none; /* Garante que não bloqueie cliques quando invisível */
+
+    /* NOVO: Centraliza a logo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* A logo dentro da transição */
+.transition-logo {
+    width: 80px; /* Tamanho discreto e elegante */
+    opacity: 0;  /* Começa invisível */
+    transform: scale(0.8); /* Começa ligeiramente menor para o efeito de entrada */
+}
