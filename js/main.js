@@ -47,20 +47,22 @@ gsap.to(".hero-bg", {
 });
 
 // 3. PARALLAX SUAVE NAS IMAGENS DA COLEÇÃO
-const portfolioImages = document.querySelectorAll('.portfolio-item img');
+function iniciarParallaxColecao() {
+    const bgs = document.querySelectorAll('.portfolio-bg');
 
-portfolioImages.forEach(img => {
-    gsap.to(img, {
-        yPercent: 20, 
-        ease: "none",
-        scrollTrigger: {
-            trigger: img.parentElement, // O gatilho é o card (<a>)
-            start: "top bottom", 
-            end: "bottom top",
-            scrub: 1.5 // O valor 1.5 dá aquela suavidade extra no movimento
-        }
+    bgs.forEach(bg => {
+        gsap.to(bg, {
+            yPercent: 15, // Move a imagem suavemente para baixo
+            ease: "none",
+            scrollTrigger: {
+                trigger: bg.parentElement, // O gatilho é o card (<a>)
+                start: "top bottom", 
+                end: "bottom top",
+                scrub: 1.5 
+            }
+        });
     });
-});
+}
 
 // 4. REFRESH
 window.addEventListener("load", () => {
@@ -168,6 +170,8 @@ function renderizarHomeColecao(imoveis) {
             </div>
         </a>
     `).join('');
+
+    iniciarParallaxColecao();
 }
 
 // 6. INICIALIZADOR DINÂMICO (O Maestro)

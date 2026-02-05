@@ -70,12 +70,6 @@
 
         <section class="filter-bar" id="filtros">
             <div class="container filter-container">
-                <div class="filter-group">
-                    <select id="filter-bairro" onchange="filtrarImoveis()">
-                        <option value="">Bairro (Todos)</option>
-                        <option value="Jardins">Euzébio</option>
-                    </select>
-                </div>
 
                 <div class="filter-group">
                     <select id="filter-suites" onchange="filtrarImoveis()">
@@ -110,13 +104,20 @@
                 </div>
 
                 <div class="filter-group">
-                <select id="filter-area" onchange="filtrarImoveis()">
-                    <option value="">Área (Todas)</option>
-                    <option value="200">200m²+</option>
-                    <option value="500">500m²+</option>
-                    <option value="1000">1.000m²+</option>
-                    <option value="2000">2.000m²+</option>
-                </select>
+                    <select id="filter-area" onchange="filtrarImoveis()">
+                        <option value="">Área (Todas)</option>
+                        <option value="200">200m²+</option>
+                        <option value="500">500m²+</option>
+                        <option value="1000">1.000m²+</option>
+                        <option value="2000">2.000m²+</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <button class="btn-clear-filters" onclick="limparFiltros()">
+                        <i class="lni lni-trash-can"></i> Limpar
+                    </button>
+                </div>
             </div>
         </section>
 

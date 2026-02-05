@@ -78,6 +78,41 @@ body { background-color: var(--bg-dark); color: #d1d1d1; }
 
 .filter-group select:focus { border-color: var(--accent-color); }
 
+.btn-clear-filters {
+    /* Dimensões e Alinhamento */    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 45px 12px 20px;
+    
+    /* Estética idêntica ao Select */
+    background: var(--bg-dark); /* Fundo igual ao select */
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.2); /* Mesma borda */
+    cursor: pointer;
+    box-sizing: border-box; /* Garante que a altura seja exatamente 48px */
+
+    /* Tipografia */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+/* Ícone dentro do botão */
+.btn-clear-filters i {
+    font-size: 0.9rem;
+    color: var(--accent-color); /* Mantém o destaque no ícone */
+}
+
+/* Efeito de Hover */
+.btn-clear-filters:hover {
+    border-color: var(--accent-color);
+    background: rgba(255, 255, 255, 0.05);
+}
+
 .results-count {
     text-align: center;
     margin-top: 20px;

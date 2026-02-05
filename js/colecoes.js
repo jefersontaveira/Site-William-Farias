@@ -22,32 +22,62 @@ function renderizarCards(imoveis) {
     
     if (!grid) return;
     
+    // Limpamos a grid antes de inserir
     grid.innerHTML = '';
-    countText.innerText = `${imoveis.length} Ativos Encontrados`;
+    
+    if (countText) {
+        countText.innerText = `${imoveis.length} Ativos Encontrados`;
+    }
 
-    imoveis.forEach(imovel => {
-        // Captura a URL da foto principal que configuramos no ACF
-        const img = imovel.acf.foto_principal || 'assets/hero.jpeg';
+    // Usamos .map para uma renderização mais limpa e rápida
+    grid.innerHTML = imoveis.map(imovel => {
+        // Fallback para a foto (tenta foto_principal, depois foto_1)
+        const fotoUrl = imovel.acf.foto_principal || imovel.acf.foto_1 || 'assets/hero.jpeg';
         
-        // Estrutura idêntica ao seu card estático
-        grid.innerHTML += `
+        return `
             <a href="template.html?id=${imovel.id}" class="portfolio-item">
-                <img src="${img}" alt="${imovel.title.rendered}">
+                <div class="portfolio-bg" style="background-image: url('${fotoUrl}');"></div>
+                
                 <div class="item-info">
                     <h3>${imovel.title.rendered}</h3>
-                    <p>${imovel.acf.suites} Suítes | ${imovel.acf.vagas} Vagas</p>
-                    <span class="price">${imovel.acf.area} m²</span>
+                    <div class="item-details-home">
+                        <span>${imovel.acf.suites} Suítes</span>
+                        <span class="separator">|</span>
+                        <span>${imovel.acf.vagas} Vagas</span>
+                        <span class="separator">|</span>
+                        <span>${imovel.acf.area} m²</span>
+                    </div>
                 </div>
             </a>
         `;
-    });
+    }).join('');
 
-    // Animação de entrada
+    // 1. REATIVAR O PARALLAX: Necessário sempre que novos cards são criados
+    iniciarParallaxColecao();
+    ScrollTrigger.refresh();
+
+    // 2. ANIMAÇÃO DE ENTRADA GSAP
     gsap.fromTo(".portfolio-item", 
         { opacity: 0, y: 30 }, 
         { opacity: 1, y: 0, stagger: 0.1, duration: 0.8, ease: "power2.out" }
     );
-} 
+}
+
+function limparFiltros() {
+    // 1. Captura todos os selects dentro da barra de filtros
+    const filtros = document.querySelectorAll('.filter-group select');
+
+    // 2. Reseta cada um para o valor vazio (primeira option)
+    filtros.forEach(select => {
+        select.value = "";
+    });
+
+    // 3. Chama a sua função de filtragem existente para atualizar a grid
+    // e o texto "X Ativos Encontrados"
+    if (typeof filtrarImoveis === "function") {
+        filtrarImoveis();
+    }
+}
 
 // 3. Lógica de Filtro
 function filtrarImoveis() {
@@ -57,7 +87,6 @@ function filtrarImoveis() {
     const quartoMin = document.getElementById('filter-quartos').value;
     const areaMin = document.getElementById('filter-area').value;
     const piscina = document.getElementById('filter-piscina').value;
-    const bairro = document.getElementById('filter-bairro').value;
 
     const filtrados = bancoDeDados.filter(imovel => {
         // Dados do ACF (convertendo para número onde necessário)
@@ -66,7 +95,6 @@ function filtrarImoveis() {
         const quartos = parseInt(imovel.acf.dormitorios) || 0;
         const area = parseFloat(imovel.acf.area) || 0;
         const temPiscina = imovel.acf.piscina; // Assume 'sim' ou 'nao'
-        const bairroImovel = imovel.acf.bairro;
 
         // Lógica de Comparação
         const matchSuites = suiteMin === "" || suites >= parseInt(suiteMin);
@@ -74,10 +102,9 @@ function filtrarImoveis() {
         const matchQuartos = quartoMin === "" || quartos >= parseInt(quartoMin);
         const matchArea = areaMin === "" || area >= parseFloat(areaMin);
         const matchPiscina = piscina === "" || temPiscina === piscina;
-        const matchBairro = bairro === "" || bairroImovel === bairro;
 
         // O imóvel só aparece se passar em TODOS os critérios ativos
-        return matchSuites && matchVagas && matchQuartos && matchArea && matchPiscina && matchBairro;
+        return matchSuites && matchVagas && matchQuartos && matchArea && matchPiscina;
     });
 
     renderizarCards(filtrados);
@@ -85,3 +112,4 @@ function filtrarImoveis() {
 
 // Inicializa os dados com segurança
 document.addEventListener('DOMContentLoaded', inicializarColecao);
+

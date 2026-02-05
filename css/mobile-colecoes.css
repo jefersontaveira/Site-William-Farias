@@ -30,6 +30,26 @@
         background-position: right 8px center; /* Seta mais próxima da borda */
     }
 
+    /* Responsividade do Botão Limpar no Mobile */
+    .btn-clear-filters {
+        width: 100%; /* Ocupa toda a célula da grid */
+        height: auto; /* Deixa o padding definir a altura como no select */
+        padding: 10px; /* Igual ao seu select mobile */
+        font-size: 0.65rem; /* Mesma fonte para não quebrar o layout */
+        justify-content: center; /* Centraliza o texto e ícone no espaço apertado */
+        gap: 5px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: var(--bg-dark);
+        display: flex;
+        align-items: center;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .btn-clear-filters i {
+        font-size: 0.8rem; /* Ícone levemente menor para o mobile */
+    }
+
     /* Grid de Imóveis Mobile */
     .portfolio-grid {
         grid-template-columns: 1fr !important; /* 1 imóvel por vez (foco total) */
