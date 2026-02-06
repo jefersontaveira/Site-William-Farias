@@ -38,6 +38,11 @@
             inset: 0;
             background: linear-gradient(to top, var(--project-bg) 5%, transparent 90%);
         }
+        
+        .section-pad {
+            /* Ajuste o primeiro valor (topo) de 60px/80px para 40px ou 30px */
+            padding: 30px 0 60px 0 !important; 
+        }
 
         .project-content { position: relative; z-index: 2; }
 
@@ -48,13 +53,48 @@
             margin-bottom: 25px;
         }
 
-        .specs-grid {
+        .grid-2-split {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-top: 50px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            padding-top: 40px;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start; /* Garante que ambos comecem do topo absoluto */
+        }
+
+        /* Tira qualquer folga do topo do bloco de texto */
+        .text-block {
+            margin-top: 0;
+            padding-top: 0;
+        }
+
+        /* Ajuste Fino no Subtítulo */
+        .text-block .gold-subtitle {
+            display: block;
+            margin-top: -6px; /* Pulo do Gato: Compensa o espaço em branco da fonte */
+            margin-bottom: 10px;
+            line-height: 1; /* Evita que a altura da linha empurre o texto pra baixo */
+        }
+
+        .project-gallery-wrapper, 
+        .slider-container {
+            margin-top: -10px !important;
+            padding-top: 0 !important;
+        }
+
+        .specs-grid {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; /* Centraliza os ícones */
+            gap: 40px 80px; /* Espaçamento generoso */
+            
+            border-top: 1px solid rgba(255, 255, 255, 0.1); /* Linha divisória sutil */
+            padding-top: 50px;
+            margin-top: 0;
+        }
+
+        .spec-item {
+            flex: 0 1 auto; /* O item ocupa apenas o espaço necessário, não estica */
+            min-width: 140px; /* Garante um tamanho mínimo saudável */
         }
 
         .spec-item i { color: var(--project-color); font-size: 1.8rem; margin-bottom: 15px; display: block; }
@@ -70,6 +110,27 @@
         }
         
         .project-description { font-size: 1.1rem; line-height: 1.8; margin-bottom: 30px; font-weight: 300; }
+
+        /* Estilo para os novos campos (Dormitórios/Piscina) */
+        .feature-tag {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .feature-tag i {
+            color: var(--project-color);
+            font-size: 1.1rem;
+        }
 
         .mini-gallery {
             display: grid;
@@ -167,42 +228,58 @@
         </section>
 
         <section class="section-pad">
-            <div class="container grid-2-split">
-                <div class="text-block">
-                    <span class="gold-subtitle">O Cenário</span>
-                    <h2 id="project-subtitle" style="color: #fff;"></h2>
-                    <p id="desc-1" class="project-description"></p>
-                    <p id="desc-2" class="project-description"></p>
+            <div class="container">
+                
+                <div class="grid-2-split" style="align-items: flex-start; margin-bottom: 50px;">
                     
-                    <div class="specs-grid">
-                        <div class="spec-item">
-                            <i class="lni lni-full-screen"></i>
-                            <span id="spec-area"></span>
-                            <p>Área Total</p>
-                        </div>
-                        <div class="spec-item">
-                            <i class="lni lni-bed"></i>
-                            <span id="spec-suites"></span>
-                            <p>Dormitórios</p>
-                        </div>
-                        <div class="spec-item">
-                            <i class="lni lni-car"></i>
-                            <span id="spec-vagas"></span>
-                            <p>Garagem</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-gallery-wrapper">
-                    <div class="slider-container">
-                        <div id="gallery-slider" class="slider-track">
-                            </div>
+                    <div class="text-block">
+                        <span class="gold-subtitle">O Cenário</span>
+                        <h2 id="project-subtitle" style="color: #fff;"></h2>
+                        
+                        <p id="desc-1" class="project-description"></p>
+                        <p id="desc-2" class="project-description"></p>
                     </div>
 
-                    <div id="slider-dots" class="slider-dots">
+                    <div class="project-gallery-wrapper">
+                        <div class="slider-container">
+                            <div id="gallery-slider" class="slider-track">
+                                </div>
                         </div>
-                </div>
-            </div>
+                        <div id="slider-dots" class="slider-dots"></div>
+                    </div>
+                    
+                </div> <div class="specs-grid">
+                    
+                    <div class="spec-item">
+                        <i class="lni lni-full-screen"></i>
+                        <span id="spec-area">--</span>
+                        <p>Área Total</p>
+                    </div>
+                    
+                    <div class="spec-item" id="item-dormitorios">
+                        <i class="lni lni-home"></i>
+                        <span id="spec-dormitorios">--</span>
+                        <p>Dormitórios</p>
+                    </div>
+
+                    <div class="spec-item">
+                        <i class="lni lni-diamond-alt"></i> <span id="spec-suites">--</span>
+                        <p>Privativas</p>
+                    </div>
+
+                    <div class="spec-item">
+                        <i class="lni lni-car"></i>
+                        <span id="spec-vagas">--</span>
+                        <p>Garagem</p>
+                    </div>
+
+                    <div class="spec-item" id="item-piscina">
+                        <i class="lni lni-drop"></i>
+                        <span id="spec-piscina">--</span>
+                        <p>Piscina</p>
+                    </div>
+
+                </div> </div>
         </section>
     </main>
 
@@ -276,6 +353,16 @@
             document.getElementById('spec-area').innerText = `${acf.area}m²`;
             document.getElementById('spec-suites').innerText = `${acf.suites} Suítes`;
             document.getElementById('spec-vagas').innerText = `${acf.vagas} Vagas`;
+            document.getElementById('spec-dormitorios').innerText = acf.dormitorios || '0';
+
+
+            // Piscina (Lógica Sim/Não)
+            const specPiscina = document.getElementById('spec-piscina');
+            if (acf.piscina && (acf.piscina.toLowerCase() === 'sim' || acf.piscina === true)) {
+                specPiscina.innerText = "Com";
+            } else {
+                specPiscina.innerText = "Não possui";
+            }
 
             // Hero Background (Usando o filtro PHP que criamos para garantir a URL)
             document.getElementById('project-hero').style.backgroundImage = `url('${acf.foto_principal}')`;
@@ -285,7 +372,7 @@
             const dotsContainer = document.getElementById('slider-dots');
             
             // Filtramos apenas fotos que existem e são URLs válidas
-            const fotosValidas = [acf.foto_principal, acf.foto_2, acf.foto_3, acf.foto_4, acf.foto_5, acf.foto_6]
+            const fotosValidas = [acf.foto_principal,acf.foto_1, acf.foto_2, acf.foto_3, acf.foto_4, acf.foto_5, acf.foto_6]
                 .filter(foto => foto && typeof foto === 'string' && foto.includes('http'));
             
             sliderTrack.innerHTML = '';
@@ -309,6 +396,13 @@
                 
                 dotsContainer.appendChild(dot);
             });
+
+            // --- WHATSAPP DINÂMICO NO FOOTER ---
+            const btnZap = document.querySelector('.btn-contact');
+            if(btnZap) {
+                const textoZap = `Olá William, tenho interesse no imóvel: ${imovel.title.rendered}. Gostaria de mais detalhes.`;
+                btnZap.href = `https://wa.me/5511999999999?text=${encodeURIComponent(textoZap)}`;
+            }
 
         } catch (error) {
             console.error("Erro ao carregar projeto:", error);
