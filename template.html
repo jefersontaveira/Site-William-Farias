@@ -289,7 +289,7 @@
             <h2 style="margin-bottom: 40px;">Consulte Disponibilidade</h2>
             <a href="https://wa.me/5511999999999?text=Olá William, gostaria de mais informações sobre a Glass Manor na Boa Vista." 
                class="btn-contact" 
-               style="border-color: var(--project-color); color: var(--project-color) !important; padding: 20px 50px;">
+               style="border-color: var(--project-color); color: var(--project-color) !important; padding: 20px 20px;">
                 Falar com William Farias
             </a>
         </div>
@@ -302,38 +302,14 @@
     <script src="js/main.js"></script>
 
     <script>
-        async function carregarProjetoPeloId() {
-            // 1. Pegamos o ID da URL (ex: ?id=25)
-            const parametros = new URLSearchParams(window.location.search);
-            const idDoImovel = parametros.get('id');
+    async function carregarDetalhesProjeto() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const projetoId = urlParams.get('id');
+        const apiURL = `https://moccasin-weasel-174149.hostingersite.com/wp-json/wp/v2/imovel/${projetoId}`;
 
-            if (!idDoImovel) {
-                window.location.href = 'colecoes.html'; // Volta se não houver ID
-                return;
-            }
-
-            // 2. Buscamos APENAS os dados desse imóvel específico
-            const apiURL = `https://moccasin-weasel-174149.hostingersite.com/wp-json/wp/v2/imovel/${idDoImovel}`;
-
-            try {
-                const response = await fetch(apiURL);
-                const imovel = await response.json();
-                
-                // 3. Agora você distribui os dados 'imovel.acf.foto_principal', etc., nos IDs do seu HTML
-                renderizarPaginaDeDetalhes(imovel); 
-            } catch (error) {
-                console.error("Erro ao buscar detalhes:", error);
-            }
-        }
-        
-        async function carregarDetalhesProjeto() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const projetoId = urlParams.get('id');
-            const apiURL = `https://moccasin-weasel-174149.hostingersite.com/wp-json/wp/v2/imovel/${projetoId}`;
-
-            if (!projetoId) {
-                window.location.href = 'colecoes.html';
-                return;
+        if (!projetoId) {
+            window.location.href = 'colecoes.html';
+            return;
         }
 
         try {
@@ -341,22 +317,21 @@
             const imovel = await response.json();
             const acf = imovel.acf;
 
-            // Preenche Textos
+            // --- TEXTOS E PREENCHIMENTO ---
             document.title = `${imovel.title.rendered} | WILLIAM FARIAS`;
             document.getElementById('project-title').innerText = imovel.title.rendered;
-            document.getElementById('project-location').innerHTML = `<i class="lni lni-trees"></i> ${acf.localizacao}`;
+            document.getElementById('project-location').innerHTML = `<i class="lni lni-map-marker"></i> ${acf.localizacao}`;
             document.getElementById('project-subtitle').innerText = acf.subtitulo_descricao;
             document.getElementById('desc-1').innerText = acf.descricao_1;
             document.getElementById('desc-2').innerText = acf.descricao_2;
             
-            // Specs
+            // Specs (Mantendo a correção para não duplicar texto)
             document.getElementById('spec-area').innerText = `${acf.area}m²`;
-            document.getElementById('spec-suites').innerText = `${acf.suites} Suítes`;
-            document.getElementById('spec-vagas').innerText = `${acf.vagas} Vagas`;
+            document.getElementById('spec-suites').innerText = acf.suites; 
+            document.getElementById('spec-vagas').innerText = acf.vagas; 
             document.getElementById('spec-dormitorios').innerText = acf.dormitorios || '0';
 
-
-            // Piscina (Lógica Sim/Não)
+            // Piscina
             const specPiscina = document.getElementById('spec-piscina');
             if (acf.piscina && (acf.piscina.toLowerCase() === 'sim' || acf.piscina === true)) {
                 specPiscina.innerText = "Com";
@@ -364,52 +339,97 @@
                 specPiscina.innerText = "Não possui";
             }
 
-            // Hero Background (Usando o filtro PHP que criamos para garantir a URL)
+            // Background
             document.getElementById('project-hero').style.backgroundImage = `url('${acf.foto_principal}')`;
 
-            // Galeria Dinâmica (Filtra apenas campos que têm imagem)
+            // --- GALERIA COM SWIPE (ARRASTAR) ---
             const sliderTrack = document.getElementById('gallery-slider');
             const dotsContainer = document.getElementById('slider-dots');
+            const sliderContainer = document.querySelector('.slider-container');
             
-            // Filtramos apenas fotos que existem e são URLs válidas
-            const fotosValidas = [acf.foto_principal,acf.foto_1, acf.foto_2, acf.foto_3, acf.foto_4, acf.foto_5, acf.foto_6]
-                .filter(foto => foto && typeof foto === 'string' && foto.includes('http'));
+            const fotosValidas = [
+                acf.foto_principal, acf.foto_1, acf.foto_2, 
+                acf.foto_3, acf.foto_4, acf.foto_5, acf.foto_6
+            ].filter(foto => foto && typeof foto === 'string' && foto.includes('http'));
             
             sliderTrack.innerHTML = '';
             dotsContainer.innerHTML = '';
 
+            // Variável de estado para saber qual slide está ativo
+            let slideAtual = 0;
+            const totalSlides = fotosValidas.length;
+
+            // 1. Renderiza as imagens
             fotosValidas.forEach((foto, index) => {
-                // Cria o Slide individual
                 sliderTrack.innerHTML += `<div class="slide"><img src="${foto}" alt="Detalhe do Imóvel"></div>`;
                 
-                // Cria a Bolinha (Dot)
                 const dot = document.createElement('div');
                 dot.classList.add('dot');
                 if (index === 0) dot.classList.add('active');
                 
-                // Adiciona o clique na bolinha para mover o slide
-                dot.onclick = () => {
-                    sliderTrack.style.transform = `translateX(-${index * 100}%)`;
-                    document.querySelectorAll('.dot').forEach(d => d.classList.remove('active'));
-                    dot.classList.add('active');
-                };
+                // Clique na bolinha
+                dot.onclick = () => mudarSlide(index);
                 
                 dotsContainer.appendChild(dot);
             });
 
-            // --- WHATSAPP DINÂMICO NO FOOTER ---
+            // 2. Função Unificada para Mudar o Slide
+            function mudarSlide(index) {
+                // Lógica de loop (se passar do último, volta pro primeiro)
+                if (index >= totalSlides) index = 0;
+                if (index < 0) index = totalSlides - 1;
+
+                slideAtual = index;
+
+                // Move o slider
+                sliderTrack.style.transform = `translateX(-${slideAtual * 100}%)`;
+
+                // Atualiza as bolinhas
+                document.querySelectorAll('.dot').forEach((d, i) => {
+                    d.classList.toggle('active', i === slideAtual);
+                });
+            }
+
+            // 3. Lógica de SWIPE (Arrastar no Mobile)
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            // Captura o toque inicial
+            sliderContainer.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, {passive: true});
+
+            // Captura o momento que solta o dedo
+            sliderContainer.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleGesture();
+            }, {passive: true});
+
+            function handleGesture() {
+                const limit = 50; // Sensibilidade: precisa arrastar pelo menos 50px
+                
+                // Arrastou para a Esquerda (<<) = Próximo Slide
+                if (touchEndX < touchStartX - limit) {
+                    mudarSlide(slideAtual + 1);
+                }
+                
+                // Arrastou para a Direita (>>) = Slide Anterior
+                if (touchEndX > touchStartX + limit) {
+                    mudarSlide(slideAtual - 1);
+                }
+            }
+
+            // --- WHATSAPP ---
             const btnZap = document.querySelector('.btn-contact');
             if(btnZap) {
-                const textoZap = `Olá William, tenho interesse no imóvel: ${imovel.title.rendered}. Gostaria de mais detalhes.`;
-                btnZap.href = `https://wa.me/5585997128528?text=${encodeURIComponent(textoZap)}`;           
+                const textoZap = `Olá, tenho interesse no imóvel *${imovel.title.rendered}* que vi no site. Gostaria de mais detalhes.`;
+                btnZap.href = `https://wa.me/5585997128528?text=${encodeURIComponent(textoZap)}`;
             }
 
         } catch (error) {
             console.error("Erro ao carregar projeto:", error);
         } finally {
-            // ESSENCIAL: Recalcula as posições de scroll após o conteúdo carregar
             ScrollTrigger.refresh(); 
-            // Se a função de encolher a logo tiver um nome no seu main.js, chame-a aqui
             if (typeof animarHeaderNoScroll === 'function') animarHeaderNoScroll();
         }
     }
