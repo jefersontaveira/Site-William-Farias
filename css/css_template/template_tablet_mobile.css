@@ -14,7 +14,7 @@
 
     /* 2. Layout: Empilha Texto e Galeria */
     .grid-2-split {
-        grid-template-columns: 1fr; /* 1 coluna apenas */
+        grid-template-columns: 1fr !important; /* 1 coluna apenas */
         gap: 40px;
     }
 
