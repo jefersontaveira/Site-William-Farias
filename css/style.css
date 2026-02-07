@@ -165,6 +165,11 @@ img { width: 100%; display: block; object-fit: cover; }
 }
 
 
+.signature{
+    padding-top: 20px;
+}
+
+
 /* --- PORTFÓLIO CORRIGIDO --- */
 .portfolio-grid {
     display: grid !important;

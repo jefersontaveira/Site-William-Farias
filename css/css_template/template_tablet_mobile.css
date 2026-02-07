@@ -1,67 +1,62 @@
+@media (max-width: 991px) {
 
-/* 1. Hero: Altura e Fonte ajustadas */
-.hero-project {
-    height: 70vh; /* Menor altura para caber na tela do celular */
-    min-height: 400px;
-    padding-bottom: 40px;
+    /* 1. Hero: Altura e Fonte ajustadas */
+    .hero-project {
+        height: 70vh; /* Menor altura para caber na tela do celular */
+        min-height: 400px;
+        padding-bottom: 40px;
+    }
+
+    #project-title {
+        font-size: 2.0rem !important; /* Reduz o título gigante */
+        line-height: 1.1;
+    }
+
+    /* 2. Layout: Empilha Texto e Galeria */
+    .grid-2-split {
+        grid-template-columns: 1fr; /* 1 coluna apenas */
+        gap: 40px;
+    }
+
+    /* 3. Galeria: Altura proporcional */
+    .slider-container {
+        height: 300px; /* Mais baixo para não ocupar a tela toda */
+    }
+
+    #project-subtitle{
+        font-size: 1.5rem;
+    }
+
+    #desc-1,#desc-2{
+        font-size: 1em;
+    }
+
+    /* 4. Ícones Técnicos (Specs): Grid de 2 colunas */
+    .specs-grid {
+        display: flex !important; 
+        flex-wrap: wrap;         
+        justify-content: center; 
+        gap: 20px;               
+        width: 100%;
+        padding-top: 40px;
+    }
+
+    /* O 5º item (Piscina) fica centralizado ocupando as 2 colunas */
+    .spec-item:last-child {
+        grid-column: auto;
+    }
+
+    /* Ajuste de tamanho dos ícones no mobile */
+    .spec-item i { font-size: 1.5rem; margin-bottom: 10px; }
+    .spec-item span { font-size: 1.2rem; }
+
+    /* 5. Espaçamentos Gerais */
+    .section-pad {
+        padding: 40px 0 !important;
+    }
+
+    .container h2 {
+        font-size: 1.5rem;
+    }
+
 }
-
-#project-title {
-    font-size: 2.0rem !important; /* Reduz o título gigante */
-    line-height: 1.1;
-}
-
-/* 2. Layout: Empilha Texto e Galeria */
-.grid-2-split {
-    grid-template-columns: 1fr; /* 1 coluna apenas */
-    gap: 40px;
-}
-
-/* 3. Galeria: Altura proporcional */
-.slider-container {
-    height: 300px; /* Mais baixo para não ocupar a tela toda */
-}
-
-#project-subtitle{
-    font-size: 1.5rem;
-}
-
-#desc-1,#desc-2{
-    font-size: 1em;
-}
-
-#desc-2 {
-    padding: 0;
-    margin: 0;
-}
-
-/* 4. Ícones Técnicos (Specs): Grid de 2 colunas */
-.specs-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 ícones por linha */
-    gap: 20px 10px; /* Gap vertical maior, horizontal menor */
-    padding-top: 0px;
-}
-
-/* O 5º item (Piscina) fica centralizado ocupando as 2 colunas */
-.spec-item:last-child {
-    grid-column: span 2;
-}
-
-/* Ajuste de tamanho dos ícones no mobile */
-.spec-item i { font-size: 1.5rem; margin-bottom: 10px; }
-.spec-item span { font-size: 1.2rem; }
-
-/* 5. Espaçamentos Gerais */
-.section-pad {
-    padding: 40px 0 !important;
-}
-
-.text-block {
-    order: 1; /* Garante que o texto fique em cima (padrão) */
-}
-
-.container h2 {
-    font-size: 1.5rem;
-}
-
