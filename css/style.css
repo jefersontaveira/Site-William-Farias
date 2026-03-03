@@ -295,6 +295,12 @@ img { width: 100%; display: block; object-fit: cover; }
 /* =========================================
     4. FOOTER & EXTRAS
    ========================================= */
+
+#logofooter img{
+    width: 200px;
+    margin-left: 26px;
+}
+
 .footer-flex {
     display: flex;
     justify-content: space-between;
